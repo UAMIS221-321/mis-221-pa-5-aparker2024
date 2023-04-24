@@ -4,10 +4,16 @@ namespace mis_221_pa_5_aparker2024
     {
         private Trainer[] trainers;
 
+        public TrainerUtility()
+        {
+
+        }
+
         public TrainerUtility(Trainer[] trainers)
         {
             this.trainers = trainers;
         }
+
 
 
         public void AddTrainer()
@@ -20,7 +26,7 @@ namespace mis_221_pa_5_aparker2024
                 System.Console.WriteLine("Updating ID...");
                
                 Trainer addTrainer = new Trainer();
-                addTrainer.SetTrainerID(Trainer.GetCount() + 1);
+                addTrainer.SetTrainerID(Trainer.GetCount() + 1) ;
                 System.Console.WriteLine("\nEnter New Trainers Name");
                 addTrainer.SetTrainerName(Console.ReadLine());
                 System.Console.WriteLine("\nEnter Their Mail Address");
@@ -36,8 +42,6 @@ namespace mis_221_pa_5_aparker2024
             addNewTrainer = Console.ReadLine();
 
             }
-            
-
         }
 
 
@@ -134,7 +138,7 @@ namespace mis_221_pa_5_aparker2024
             inFile.Close();
         }
 
-        private int FindTrainer(int searchVal)
+        public int FindTrainer(int searchVal)
         {
             for (int i = 0; i < Trainer.GetCount(); i++)
             {
@@ -145,7 +149,7 @@ namespace mis_221_pa_5_aparker2024
             }
             return -1;
         }
-        private void SaveToFile()
+        public void SaveToFile()
         {
             StreamWriter outFile = new StreamWriter("trainers.txt");
             for (int i = 0; i < Trainer.GetCount(); i++)

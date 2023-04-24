@@ -3,3 +3,4 @@
 3#Rando Bob#The University of Alabama#randobob@crimson.ua.edu
 4#Trainer New#The University of Alabama#randomP@crimson.ua
 5#Random Person#The University of Alabama#randomP@crimson.ua
+6#new trainer#new traner address#newTrainer@gmail.com

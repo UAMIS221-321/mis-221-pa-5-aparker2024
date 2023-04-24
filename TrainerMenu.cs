@@ -4,6 +4,11 @@ namespace mis_221_pa_5_aparker2024
     {
         private Trainer[] trainers;
 
+
+        public TrainerMenu()
+        {
+            
+        }
         public TrainerMenu(Trainer[] trainers)
         {
             this.trainers = trainers;
