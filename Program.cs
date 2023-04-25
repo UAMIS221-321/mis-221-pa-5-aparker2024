@@ -3,14 +3,15 @@
 Trainer[] trainers = new Trainer[50];
 ListingFunctions[] listings = new ListingFunctions[50]; 
 
-// Menu menuOption = new Menu();
+Menu menuOption = new Menu();
 
-// menuOption.MenuToString();
-// menuOption.SetMenuOption(int.Parse(Console.ReadLine()));
-// menuOption.RouteEm(trainers);
+menuOption.MenuToString();
+menuOption.SetMenuOption(int.Parse(Console.ReadLine()));
+menuOption.RouteEm(trainers, listings);
 
-ListingUtility list = new ListingUtility();
-ListingReports listreports = new ListingReports(listings);
-// list.GetListingsFromFile();
-list.AddToListing(trainers, listings);
-listreports.PrintAllListings();
+// ListingUtility list = new ListingUtility();
+// ListingReports listreports = new ListingReports(listings);
+// list.GetListingsFromFile(listings);
+// listreports.PrintAllListings();
+// list.DeleteListing(listings);
+//list.GetToListing(trainers, listings); // add to listing

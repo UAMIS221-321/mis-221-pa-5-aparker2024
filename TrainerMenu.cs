@@ -3,6 +3,7 @@ namespace mis_221_pa_5_aparker2024
     public class TrainerMenu
     {
         private Trainer[] trainers;
+        private ListingFunctions[] listings;
 
 
         public TrainerMenu()
@@ -48,7 +49,7 @@ namespace mis_221_pa_5_aparker2024
                 Menu menuOption = new Menu();
                 menuOption.MenuToString();
                 menuOption.SetMenuOption(int.Parse(Console.ReadLine()));
-                menuOption.RouteEm(trainers);
+                menuOption.RouteEm(trainers, listings);
             }
             else
             {

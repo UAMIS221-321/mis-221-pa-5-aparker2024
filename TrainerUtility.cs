@@ -47,7 +47,7 @@ namespace mis_221_pa_5_aparker2024
 
         public void EditTrainer()
         {
-            System.Console.WriteLine("Are you sure would like to edit a trainer?\n'Y' to continue 'Stop' to stop");
+            System.Console.WriteLine("Are you sure would like to edit a trainer?\t'Y' to continue 'Stop' to stop");
             string eddTrainer = Console.ReadLine();
 
             while (eddTrainer.ToUpper() != "STOP")

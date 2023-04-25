@@ -23,7 +23,7 @@ namespace mis_221_pa_5_aparker2024
             this.sessionCost = sessionCost;
             this.sessionDate = sessionDate;
             this.sessionTime = sessionTime;
-            SetListTaken(false);
+            this.listTaken = listTaken;
 
         }
 
@@ -105,6 +105,12 @@ namespace mis_221_pa_5_aparker2024
         static public int DecCount()
         {
             return count--;
+        }
+        
+       static public void PauseIt()
+        {
+            System.Console.WriteLine("Enter any key to continue");
+            Console.ReadKey();
         }
 
         public string ListingToFile()

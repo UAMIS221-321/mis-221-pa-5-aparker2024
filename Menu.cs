@@ -32,7 +32,7 @@ namespace mis_221_pa_5_aparker2024
 
         }
 
-        public void RouteEm(Trainer[] trainers)
+        public void RouteEm(Trainer[] trainers,ListingFunctions[] listings)
         {
             switch (menuChoice)
             {
@@ -41,7 +41,8 @@ namespace mis_221_pa_5_aparker2024
                     trainerMenuOptions.TrainersMenu(trainers);
                     break;
                 case 2:
-                    System.Console.WriteLine("THis is listing data section ____");
+                    ListingMenu listingMenuOptions = new ListingMenu(listings);
+                    listingMenuOptions.ListingsMenu(listings, trainers);
                     break;
                 case 3:
                     System.Console.WriteLine("This is customer booking_+++++++++++++");
