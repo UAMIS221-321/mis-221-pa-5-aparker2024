@@ -120,7 +120,7 @@ namespace mis_221_pa_5_aparker2024
         }
         public string ListingToString()
         {
-            return$"Listing id: {listingID}\tTrainer Name: {trainerName}\tSession Cost: {sessionCost}\tSession Date: {sessionDate}\tSession Time: {sessionTime}";
+            return$"Listing id: {listingID}\t\tTrainer Name: {trainerName}\t\tSession Cost: {sessionCost}\t\tSession Date: {sessionDate}\t\tSession Time: {sessionTime}";
         }
     }
 }

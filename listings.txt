@@ -1,3 +1,13 @@
 1#Antonio Parker#100.1#april 9#4#False
 2#Antonio Parker#75.7#april 18#2#False
-3#Kirsten Hines#75.7#April 18#2:30#False
+3#Kirsten Hines#75.7#april 18#2:30#False
+4#Kirsten Hines#75.7#april 17#5#False
+5#Rando Bob#75.7#april 18#3#False
+6#Rando Bob#75.7#april 19#12#False
+7#Trainer New#75.7#april 17#1#False
+8#Random Person#75.7#april 19 #11#False
+9#Trainer New#75.7#april 19#10#False
+10#Trainer New#75.7#april 20#2#False
+11#Random Person#75.7#april 9#2#False
+12#Rando Bob#75.7#april 17#2:30#False
+13#new trainer#75.7#april 28#2#False

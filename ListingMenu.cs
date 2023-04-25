@@ -27,7 +27,7 @@ namespace mis_221_pa_5_aparker2024
             {
                 Console.Clear();
                 listingFunctions.GetListingsFromFile(listings);
-                listingFunctions.GetToListing(trainers, listings);
+                listingFunctions.AddListing(trainers, listings);
                 ListingsMenu(listings,trainers);
                 
             }

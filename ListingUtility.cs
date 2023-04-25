@@ -16,7 +16,7 @@ namespace mis_221_pa_5_aparker2024
             this.listings = listings;
         }
 
-        public void GetToListing(Trainer [] trainers, ListingFunctions[] listings)
+        public void AddListing(Trainer [] trainers, ListingFunctions[] listings)
         {
 
             TrainerUtility getTrainers = new TrainerUtility(trainers);
@@ -33,14 +33,14 @@ namespace mis_221_pa_5_aparker2024
                 getTrainers.GetTrainersFromFile();
                 printTrainers.PrintAlltrainers();
 
-                System.Console.WriteLine("Which trainer would you like to add to listing?");
+                System.Console.WriteLine("Which trainer would you like to add to listing?\t\t 'enter ID number'");
                 int searchTrainer = int.Parse(Console.ReadLine());
 
                 int foundIndex = getTrainers.FindTrainer(searchTrainer);
                     
                 if (foundIndex != -1)
                 {
-                    AddToListing(foundIndex, trainers, listings); 
+                    AddToListingFile(foundIndex, trainers, listings); 
                 }
 
                 else
@@ -48,7 +48,7 @@ namespace mis_221_pa_5_aparker2024
                     System.Console.WriteLine("Trainer not found");
                     getTrainers.PauseIt();
                     Console.Clear();
-                    GetToListing(trainers, listings);
+                    AddListing(trainers, listings);
                 }
 
                 System.Console.WriteLine("Are you sure you would like to Add a trainer to Listing?\n'Y' to continue 'Stop' to stop");
@@ -65,7 +65,7 @@ namespace mis_221_pa_5_aparker2024
            else
            {
                 System.Console.WriteLine("invalid");
-                GetToListing(trainers, listings);
+                AddListing(trainers, listings);
            }
         }
         //
@@ -78,7 +78,7 @@ namespace mis_221_pa_5_aparker2024
         //
         // MAYBE ADD ADDITIONAL TRAINING FEES AND DIFFERENT ADD ONS FOR TRAINERS
 
-        public void AddToListing(int foundIndex, Trainer[] trainers, ListingFunctions[] listings)
+        public void AddToListingFile(int foundIndex, Trainer[] trainers, ListingFunctions[] listings)
         {
             Trainer foundTrainer = trainers[foundIndex];
             string trainerNames = foundTrainer.GetTrainerName();
@@ -233,30 +233,34 @@ namespace mis_221_pa_5_aparker2024
             }            
         }
 
-        public void CheckAviavable(ListingFunctions makeListing, ListingFunctions[] listings)
+        private void CheckAviavable(ListingFunctions makeListing, ListingFunctions[] listings)
         {
 
             for (int i = 0; i <ListingFunctions.GetCount() ; i++)
             {      
-                if(listings[i].GetDateOfSession() == makeListing.GetDateOfSession() && listings[i].GetTimeOfSession() == makeListing.GetTimeOfSession())
-                {
-                    
-                    System.Console.WriteLine("session not avialable please select another time");
-                    System.Console.WriteLine($"New date: ");
-                    makeListing.SetDateOfSession(Console.ReadLine());
-                    System.Console.WriteLine($"New time: ");
-                    makeListing.SetTimeOfSession(Console.ReadLine());
-                    CheckAviavable(makeListing, listings);
 
-                }  
-                else if(listings[i].GetDateOfSession() != makeListing.GetDateOfSession() && listings[i].GetTimeOfSession() == makeListing.GetTimeOfSession() )
+                if(listings[i].GetDateOfSession() == makeListing.GetDateOfSession())
                 {
-                    
-                    System.Console.WriteLine("Session unavaiable...");
-                    System.Console.WriteLine("Please enter a new time:");
-                    makeListing.SetTimeOfSession(Console.ReadLine());
-                    CheckAviavable(makeListing,listings);
-                }   
+                    if (listings[i].GetTimeOfSession() == makeListing.GetTimeOfSession())
+                    {
+                    System.Console.WriteLine($"\ndates[i]: {listings[i].GetDateOfSession()}    make listing: {makeListing.GetDateOfSession()}");
+                        System.Console.WriteLine("session not avialable please select another time");
+                        System.Console.WriteLine($"New date: ");
+                        makeListing.SetDateOfSession(Console.ReadLine());
+                        System.Console.WriteLine($"New time: ");
+                        makeListing.SetTimeOfSession(Console.ReadLine());
+                        CheckAviavable(makeListing, listings);
+                    }
+                    else if (listings[i].GetTimeOfSession() != makeListing.GetTimeOfSession())
+                    {
+                       
+                    }
+                }
+                else if(listings[i].GetDateOfSession() != makeListing.GetDateOfSession())
+                {
+                   
+                }
+                
             }    
 
             System.Console.WriteLine("all set!!");    
@@ -281,7 +285,7 @@ namespace mis_221_pa_5_aparker2024
         }
 
 
-        public void SaveToListingFile(ListingFunctions[] listings)
+        private void SaveToListingFile(ListingFunctions[] listings)
         {
          
             StreamWriter outToFile = new StreamWriter("listings.txt");
@@ -295,7 +299,7 @@ namespace mis_221_pa_5_aparker2024
         }
 
 
-        public int FindListing(int searchListing, ListingFunctions[] listings)
+        private int FindListing(int searchListing, ListingFunctions[] listings)
         {
             for (int i = 0; i < ListingFunctions.GetCount(); i++)
             {
