@@ -3,6 +3,8 @@ namespace mis_221_pa_5_aparker2024
     public class ListingMenu
     {
         private ListingFunctions[] listings;
+        private Trainer[] trainers;
+        private Booking[] bookings;
 
         public ListingMenu()
         {
@@ -14,7 +16,7 @@ namespace mis_221_pa_5_aparker2024
             this.listings = listings;
         }
 
-        public void ListingsMenu(ListingFunctions[] listings, Trainer[] trainers)
+        public void ListingsMenu(ListingFunctions[] listings, Trainer[] trainers, Booking[] bookings)
         {
 
             Console.Clear();
@@ -28,7 +30,7 @@ namespace mis_221_pa_5_aparker2024
                 Console.Clear();
                 listingFunctions.GetListingsFromFile(listings);
                 listingFunctions.AddListing(trainers, listings);
-                ListingsMenu(listings,trainers);
+                ListingsMenu(listings,trainers, bookings);
                 
             }
             else if (listingMenu == 2)
@@ -37,7 +39,7 @@ namespace mis_221_pa_5_aparker2024
                 listingFunctions.GetListingsFromFile(listings);
                 listingsReports.PrintAllListings();   
                 listingFunctions.EditListing(listings, trainers);
-                ListingsMenu(listings,trainers);
+                ListingsMenu(listings,trainers, bookings);
             }
             else if(listingMenu == 3)
             {
@@ -45,7 +47,7 @@ namespace mis_221_pa_5_aparker2024
                 listingFunctions.GetListingsFromFile(listings);
                 listingsReports.PrintAllListings();
                 listingFunctions.DeleteListing(listings);
-                ListingsMenu(listings,trainers);
+                ListingsMenu(listings,trainers, bookings);
             }
             else if (listingMenu == 4)
             {
@@ -53,13 +55,13 @@ namespace mis_221_pa_5_aparker2024
                 Menu menuOption = new Menu();
                 menuOption.MenuToString();
                 menuOption.SetMenuOption(int.Parse(Console.ReadLine()));
-                menuOption.RouteEm(trainers, listings);
+                menuOption.RouteEm(trainers, listings, bookings);
             }
             else
             {
                 System.Console.WriteLine("Invalid!");
                 ListingFunctions.PauseIt();
-                ListingsMenu(listings, trainers);
+                ListingsMenu(listings, trainers, bookings);
             }  
 
         }

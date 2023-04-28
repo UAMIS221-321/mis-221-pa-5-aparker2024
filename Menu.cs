@@ -2,6 +2,7 @@ namespace mis_221_pa_5_aparker2024
 {
     public class Menu
     {
+       
         private int menuChoice;
 
         public Menu()
@@ -27,12 +28,13 @@ namespace mis_221_pa_5_aparker2024
 
         public void MenuToString()
         {
+            
             System.Console.WriteLine("Which Section would you like to view...");
             System.Console.WriteLine("1.\tTrainer Data\n2.\tListing Data\n3.\tCustomer Booking\n4.\tReports\n5.\tExit Program");
 
         }
 
-        public void RouteEm(Trainer[] trainers,ListingFunctions[] listings)
+        public void RouteEm(Trainer[] trainers,ListingFunctions[] listings, Booking[] bookings)
         {
             switch (menuChoice)
             {
@@ -42,13 +44,15 @@ namespace mis_221_pa_5_aparker2024
                     break;
                 case 2:
                     ListingMenu listingMenuOptions = new ListingMenu(listings);
-                    listingMenuOptions.ListingsMenu(listings, trainers);
+                    listingMenuOptions.ListingsMenu(listings, trainers, bookings);
                     break;
                 case 3:
-                    System.Console.WriteLine("This is customer booking_+++++++++++++");
+                   BookMenu newBookingMenu = new BookMenu();
+                   newBookingMenu.BookingMenu(listings, trainers);
                     break;
                 case 4:
-                    System.Console.WriteLine("Reports{}{}{}{}{}{}}{}{}{}{}");
+                    ReportsMenu newReportingMenu = new ReportsMenu();
+                    newReportingMenu.ReportingMenu(trainers,listings, bookings);
                     break;
                 case 5:
                     System.Console.WriteLine("GGs mate");

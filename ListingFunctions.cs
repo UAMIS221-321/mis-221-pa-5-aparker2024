@@ -8,6 +8,7 @@ namespace mis_221_pa_5_aparker2024
         private string sessionDate;
         private string sessionTime;
         private bool listTaken;
+        
 
         static private int count;
 
@@ -26,6 +27,7 @@ namespace mis_221_pa_5_aparker2024
             this.listTaken = listTaken;
 
         }
+
 
 
         public void SetListingID(int listingID)

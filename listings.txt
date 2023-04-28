@@ -8,6 +8,6 @@
 8#Random Person#75.7#april 19 #11#False
 9#Trainer New#75.7#april 19#10#False
 10#Trainer New#75.7#april 20#2#False
-11#Random Person#75.7#april 9#2#False
-12#Rando Bob#75.7#april 17#2:30#False
-13#new trainer#75.7#april 28#2#False
+11#Rando Bob#75.7#april 17#2:30#False
+12#new trainer#75.7#april 28#2#False
+13#Jeff L#75.7#april 8#11:45#False

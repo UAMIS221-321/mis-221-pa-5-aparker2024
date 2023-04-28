@@ -32,13 +32,13 @@ namespace mis_221_pa_5_aparker2024
                 System.Console.WriteLine("\nEnter Their Mail Address");
                 addTrainer.SetMailingAddress(Console.ReadLine());
                 System.Console.WriteLine("\nFinally, Enter Their Email Addresss");
-                addTrainer.SetTrainerEmail(Console.ReadLine());
+                addTrainer.SetTrainerEmail(Console.ReadLine() + "@crimson.ua.edu");
 
                 trainers[Trainer.GetCount()] = addTrainer;
                 Trainer.IncCount();
                 SaveToFile();
 
-            System.Console.WriteLine("Are you sure you would like to add a trainer?\n'Y' to continue 'Stop' to stop");
+            System.Console.WriteLine("Would like to add another trainer?\n'Y' to continue 'Stop' to stop");
             addNewTrainer = Console.ReadLine();
 
             }
@@ -60,12 +60,37 @@ namespace mis_221_pa_5_aparker2024
                 {
                     Trainer editingTrainers = trainers[foundIndex];
                     editingTrainers.SetTrainerID(searchVal);
-                    System.Console.WriteLine("\nEnter New Trainers Name");
-                    editingTrainers.SetTrainerName(Console.ReadLine());
-                    System.Console.WriteLine("\nEnter Their Mail Address");
-                    editingTrainers.SetMailingAddress(Console.ReadLine());
-                    System.Console.WriteLine("\nFinally, Enter Their Email Addresss");
-                    editingTrainers.SetTrainerEmail(Console.ReadLine());
+                    System.Console.WriteLine("Which secion would you like to change?\n'stop' to stop");
+                    System.Console.WriteLine("TN > Trainer Name\nMA > Mailing Address\nTE > Trainer Email");
+                    string editSection = Console.ReadLine();
+                    while (editSection.ToUpper() != "STOP")
+                    {
+                        if (editSection.ToUpper() == "TN" )
+                        {
+                            System.Console.WriteLine("Enter a new Name...");
+                            editingTrainers.SetTrainerName(Console.ReadLine());
+                        }
+                        else if(editSection.ToUpper() == "MA")
+                        {
+                            System.Console.WriteLine("Enter a new Mailing Address");
+                            editingTrainers.SetMailingAddress(Console.ReadLine());
+                        }
+                        else if(editSection.ToUpper() == "TE")
+                        {
+                            System.Console.WriteLine("Enter their new Email Addresss");
+                            editingTrainers.SetTrainerEmail(Console.ReadLine() + "@crimson.ua.edu");
+                        }
+                            
+                    System.Console.WriteLine("Which secion would you like to change?\n'stop' to stop");
+                    System.Console.WriteLine("TN > Trainer Name\nMA > Mailing Address\nTE > Trainer Email");
+                    editSection = Console.ReadLine();
+                    }
+                    // System.Console.WriteLine("\nEnter New Trainers Name");
+                    // editingTrainers.SetTrainerName(Console.ReadLine());
+                    // System.Console.WriteLine("\nEnter Their Mail Address");
+                    // editingTrainers.SetMailingAddress(Console.ReadLine());
+                    // System.Console.WriteLine("\nFinally, Enter Their Email Addresss");
+                    // editingTrainers.SetTrainerEmail(Console.ReadLine());
                     SaveToFile();
                     System.Console.WriteLine("Trainer information updated!");
                     PauseIt();

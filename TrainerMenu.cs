@@ -4,12 +4,8 @@ namespace mis_221_pa_5_aparker2024
     {
         private Trainer[] trainers;
         private ListingFunctions[] listings;
+        private Booking[] bookings;
 
-
-        public TrainerMenu()
-        {
-            
-        }
         public TrainerMenu(Trainer[] trainers)
         {
             this.trainers = trainers;
@@ -29,6 +25,9 @@ namespace mis_221_pa_5_aparker2024
                 trainerFunctions.GetTrainersFromFile();
                 trainerReports.PrintAlltrainers();
                 trainerFunctions.AddTrainer();
+                ListingFunctions.PauseIt();
+                TrainersMenu(trainers);
+                
             }
             else if (trainerMenu == 2)
             {
@@ -36,12 +35,16 @@ namespace mis_221_pa_5_aparker2024
                 trainerFunctions.GetTrainersFromFile();
                 trainerReports.PrintAlltrainers();
                 trainerFunctions.EditTrainer();
+                ListingFunctions.PauseIt();
+                TrainersMenu(trainers);
             }
             else if (trainerMenu == 3)
             {
                 trainerFunctions.GetTrainersFromFile();
                 trainerReports.PrintAlltrainers();
                 trainerFunctions.DeleteTrainer();
+                ListingFunctions.PauseIt();
+                TrainersMenu(trainers);
             }
             else if (trainerMenu == 4)
             {
@@ -49,7 +52,9 @@ namespace mis_221_pa_5_aparker2024
                 Menu menuOption = new Menu();
                 menuOption.MenuToString();
                 menuOption.SetMenuOption(int.Parse(Console.ReadLine()));
-                menuOption.RouteEm(trainers, listings);
+                menuOption.RouteEm(trainers, listings, bookings);
+                ListingFunctions.PauseIt();
+                TrainersMenu(trainers);
             }
             else
             {

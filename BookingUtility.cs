@@ -12,10 +12,12 @@ namespace mis_221_pa_5_aparker2024
         }
         public BookingUtility(Trainer[] trainers, ListingFunctions[] listings, Booking[] bookings)
         {
-
+            this.trainers = trainers;
+            this.listings = listings;
+            this.bookings = bookings;
         }
 
-        public void AddBooking(ListingFunctions[] listings)
+        public void AddBooking(Trainer[] trainers, ListingFunctions[] listings)
         {
             System.Console.WriteLine("Are you sure you would like to book a session? 'Y' or 'N'");
             string addBooking = Console.ReadLine();
@@ -27,7 +29,7 @@ namespace mis_221_pa_5_aparker2024
                 Console.Clear();
                 while (addBooking.ToUpper() != "STOP")
                 {
-                    MakeSession(listings, trainers);
+                    MakeSession(trainers, listings);
                     System.Console.WriteLine("Enter 'STOP' to stop adding\tEnter 'Y' to add another");
                     addBooking = Console.ReadLine();   
                 }
@@ -41,24 +43,73 @@ namespace mis_221_pa_5_aparker2024
             {
                 System.Console.WriteLine("Invalid");
                 Booking.PauseIt();
-                AddBooking(listings);
+                AddBooking(trainers, listings);
             }
         }
 
 
-        private void MakeSession(ListingFunctions[] listings, Trainer[] trainers)
+        private void MakeSession(Trainer[] trainers, ListingFunctions[] listings)
         {
             System.Console.WriteLine("AVAILABLE TRAINING SESSIONS.....");
             ListingUtility getListing = new ListingUtility(trainers, listings);
             ListingReports printListings = new ListingReports(listings);
+            TrainerUtility getAllTrainer = new TrainerUtility(trainers);
+            getAllTrainer.GetTrainersFromFile();
             getListing.GetListingsFromFile(listings);
             printListings.PrintAllListings();
 
+            System.Console.WriteLine($"\nPlease enter The Id of the session you would like to book");
+            int searchListID = int.Parse(Console.ReadLine());
+
+            int foundListing = getListing.FindListing(searchListID, listings);
+            int findTrainer = getAllTrainer.FindTrainer(searchListID);
+            
+
+            if (foundListing != -1 && bookings[searchListID -1].GetSessionStatus() != true) 
+            {   
+                
+                Booking bookingSession = new Booking();   
+                       
+
+                bookingSession.SetBookingID(Booking.GetBookingCount() + 1);
+                System.Console.WriteLine($"Booking ID: {bookingSession.GetBookingID()}");
+                System.Console.WriteLine("Please Enter your Name: ");
+                bookingSession.SetCustomerName(Console.ReadLine());
+                System.Console.WriteLine("Please Enter your User Name");
+                bookingSession.SetCustomerEmail(Console.ReadLine() + "@crimson.ua.edu");
+
+                bookingSession.SetTrainingDate(listings[searchListID -1].GetDateOfSession());
+                System.Console.WriteLine($"Your session is set for: {bookingSession.GetTrainingDate()} at {listings[foundListing].GetTimeOfSession()} ");
+            
+                int nameID = FindNameID(listings[searchListID-1].GetTrainerName(), trainers, bookings);
+                
+                if (nameID != -1)
+                {
+                    bookingSession.SetBookedTrainerID(nameID + 1);
+                }
+                else
+                {
+                    System.Console.WriteLine("no ID found");
+                }
+                bookingSession.SetBookedTrainerName(listings[searchListID - 1].GetTrainerName());   
+                System.Console.WriteLine($"With our trainer {bookingSession.GetBookedTrainerID()}: {bookingSession.GetBookedTrainerName()}");
+                System.Console.WriteLine("You are all booked!! Thank you");
+                bookingSession.SetSessionStatus(true);
+
+                
+
+                bookings[Booking.GetBookingCount()] = bookingSession;
+                Booking.IncCount();
+                SaveToBookingFile();
+
+
+            }
+                else if(bookings[searchListID -1].GetSessionStatus() == true) {
+                System.Console.WriteLine("sesssion unavailable");
+
+            }
+
         }
-
-
-
-
 
 
         public void GetBookingsFromfile(Booking[] bookings)
@@ -78,7 +129,7 @@ namespace mis_221_pa_5_aparker2024
             inFile.Close();
         }
 
-        private void SaveToBookingFile(Booking[] bookings)
+        private void SaveToBookingFile()
         {
             StreamWriter toBookingFile = new StreamWriter("transactions.txt");
 
@@ -89,14 +140,34 @@ namespace mis_221_pa_5_aparker2024
             toBookingFile.Close();
         }
 
-        private int FindBooking(int searchListing, Booking[] bookings)
+        private int FindBooking(int searchBooking, Booking[] bookings, ListingFunctions[] listings)
         {
             for (int i = 0; i < Booking.GetBookingCount(); i++)
             {
-                return i;
+                if (bookings[i].GetBookingID() == searchBooking)
+                {
+                    return i;
+                }
             }
 
             return -1;
+        }
+
+        private int FindNameID(string name, Trainer[] trainers, Booking[] bookings)
+        {
+        
+                
+                    for (int j = 0; j < Trainer.GetCount(); j++)
+                    {
+                        if( trainers[j].GetTrainerName() == name)
+                        {
+
+                            return j;
+                        }
+                    }
+                
+
+            return -1 ;
         }
     }
 }

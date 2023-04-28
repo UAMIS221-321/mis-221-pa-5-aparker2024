@@ -137,10 +137,6 @@ namespace mis_221_pa_5_aparker2024
                     ListingFunctions editingListings = listings[foundIndex];
                     editingListings.SetListingID(searchVal); // set the ID equal to the search
 
-
-
-
-
                     TrainerUtility getTrainers = new TrainerUtility(trainers);
                     TrainerReports printReports = new TrainerReports(trainers);
                     getTrainers.GetTrainersFromFile();
@@ -299,7 +295,7 @@ namespace mis_221_pa_5_aparker2024
         }
 
 
-        private int FindListing(int searchListing, ListingFunctions[] listings)
+        public int FindListing(int searchListing, ListingFunctions[] listings)
         {
             for (int i = 0; i < ListingFunctions.GetCount(); i++)
             {

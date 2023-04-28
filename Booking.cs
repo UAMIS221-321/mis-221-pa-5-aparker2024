@@ -27,13 +27,13 @@ namespace mis_221_pa_5_aparker2024
             this.sessionStatus = sessionStatus;
         }
 
-         public void SetBookingID(int bookingID)
-        {
-            this.bookingID = bookingID;
-        }
         public int GetBookingID()
         {
             return bookingID;
+        }
+         public void SetBookingID(int bookingID)
+        {
+            this.bookingID = bookingID;
         }
 
         public void SetCustomerName(string customerName)
@@ -85,6 +85,7 @@ namespace mis_221_pa_5_aparker2024
        public void SetSessionStatus(bool sessionStatus)
        {
         this.sessionStatus = sessionStatus;
+        
        }
         public bool GetSessionStatus()
         {
@@ -92,9 +93,9 @@ namespace mis_221_pa_5_aparker2024
         }
 
 
-        static public void SetBookingCount(int bookingID)
+        static public void SetBookingCount(int bookingCount)
         {
-            Booking.bookingCount = bookingID;
+            Booking.bookingCount = bookingCount;
         }
         static public int GetBookingCount()
         {
@@ -118,13 +119,36 @@ namespace mis_221_pa_5_aparker2024
 
         public string BookingToFile()
         {
+                
             return$"{bookingID}#{customerName}#{customerEmail}#{trainingDate}#{bookedTrainerID}#{bookedTrainerName}#{sessionStatus}";
-          
+           
         }
         public string BookingToString()
         {
 
-            return $"Booking id: {bookingID}\tCustomer Name: {customerName}\tCustomer Email: {customerEmail}\tTraining Date: {trainingDate}\tBooked Trainer ID: {bookedTrainerID}\tBooked Trainer Name: {bookedTrainerName}";
+          
+            if (sessionStatus == false)
+            {
+                System.Console.WriteLine("Was this session Cancelled or Completed?\t\tenter 'CA' or 'CO'");
+                string cancelledCompleted = Console.ReadLine();
+                if (cancelledCompleted.ToUpper() == "CA")
+                {
+                    return $"Booking ID: {bookingID}\t\tCustomer Name: {customerName}\t\tCustomer Email: {customerEmail}\t\tTraining Date: {trainingDate}Trainer: {bookedTrainerID} {bookedTrainerName}\t\tSession Status: Cancelled";
+                }
+
+                else if (cancelledCompleted.ToUpper() == "CO")
+                {
+                    return $"Booking ID: {bookingID}\t\tCustomer Name: {customerName}\t\tCustomer Email: {customerEmail}\t\tTraining Date: {trainingDate}Trainer: {bookedTrainerID} {bookedTrainerName}\t\tSession Status: Completed";
+                }
+                else
+                {
+                    System.Console.WriteLine("Invalid option");
+                    PauseIt();
+                    BookingToFile();
+                }
+               
+            }
+            return $"Booking ID: {bookingID}\t\tCustomer Name: {customerName}\t\tCustomer Email: {customerEmail}\t\tTraining Date: {trainingDate}\t\tTrainer: {bookedTrainerID}. {bookedTrainerName}\t\tSession Status: booked";
             
         }
     }
