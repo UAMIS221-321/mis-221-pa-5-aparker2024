@@ -31,8 +31,7 @@ namespace mis_221_pa_5_aparker2024
                 {
                  System.Console.WriteLine(bookings[i].BookingToString());
                  foundBooking= true;
-                 
-
+                 SaveToFile(bookings);
                 } 
             }  
             
@@ -52,10 +51,12 @@ namespace mis_221_pa_5_aparker2024
             if (dateOrCustomer.ToUpper() == "DATE")
             {
                 reportingReports.SortByDate(bookings);
+                SaveToFile(bookings);
             }
             else if(dateOrCustomer.ToUpper() == "CUSTOMER")
             {
                 reportingReports.SortByCustomer(bookings);
+                SaveToFile(bookings);
             }
             else
             {
@@ -89,7 +90,22 @@ namespace mis_221_pa_5_aparker2024
                 
             }
             System.Console.WriteLine($"The Total Revenue for {months} is... ${monthlyRevenue}");
+            SaveToFile(bookings);
         }
        
+
+       public void SaveToFile(Booking[] bookings)
+       {
+        System.Console.WriteLine("Which file would you like to save to?  'only enter 'name' of file. You txt file we be auto created! ");
+            string saveFile = Console.ReadLine() + ".txt";
+
+            StreamWriter toReportingFile = new StreamWriter(saveFile);
+
+            for (int i = 0; i < Booking.GetBookingCount(); i++)
+            {
+                toReportingFile.WriteLine(bookings[i].BookingToFile());
+            }
+            toReportingFile.Close();
+       }
     }
 }
